@@ -1,0 +1,17 @@
+public class Solution {
+	
+	public static long maxSubarraySum(int[] arr, int n) {
+		// write your code here
+		long sum = 0;
+		long max = 0;
+		for(int i:arr){
+              sum+=i;
+			  if(sum<0){
+				sum = 0;
+			  }
+			    max=Math.max(sum,max);
+		}
+		return max;
+	}
+
+}
