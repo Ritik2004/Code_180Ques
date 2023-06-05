@@ -1,0 +1,64 @@
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        // int temp=0;
+        // int n1 = 0;
+        // int ans[] = new int[2];
+        // int real = (n*(n+1))/2;
+        // HashSet<Integer> set = new HashSet<>();
+        // for(int i=0;i<n;i++){
+        //      temp += arr.get(i);
+        //     if(set.contains(arr.get(i))){
+        //          n1 = arr.get(i);
+        //     }
+        //     else set.add(arr.get(i));
+        // }
+         // int temp1 = real-(temp-n1);
+        // ans[0] = temp1;
+        // ans[1] = n1;
+        // return ans;
+        
+      ////////////Second way///////////////
+      
+      int xor = 0;
+        int temp[] = new int[2];
+        for(int i=0;i<arr.size();i++){
+            xor^=arr.get(i);
+        }
+        for(int i=1;i<=arr.size();i++){
+            xor^=i;
+        }
+        int rsb = xor & -xor;
+        int x=0;
+        int y=0;
+        for(int i=0;i<arr.size();i++){
+            if((arr.get(i)&rsb) == 0){
+                x=x^arr.get(i);
+            }
+            else{
+                y=y^arr.get(i);
+            }
+        }
+         for(int i=1;i<=arr.size();i++){
+            if((i&rsb) == 0){
+                x=x^i;
+            }
+            else{
+                y=y^i;
+            }
+        }
+         for(int i=0;i<arr.size();i++){
+            if(arr.get(i)==x){
+                temp[0] = y;
+                temp[1] = x;
+                break;
+            }
+            else if(arr.get(i) == y){
+                temp[0] = x;
+                temp[1] = y;
+                break;
+        }
+        }
+        return temp;
+    }
+}
