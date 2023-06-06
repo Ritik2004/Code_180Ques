@@ -1,0 +1,22 @@
+public class Solution {
+    public static long find(long x, long n,long m){
+             long ans = 1;
+             long pow = n;
+             while(pow>0){
+                 if(pow%2==0){
+                     x=((x)*(x))%m;
+                        pow = pow/2;
+                 }
+                 else{
+                    ans = (ans*(x))%m;
+                    pow=pow-1;
+
+                 }
+             } 
+             return (int)ans;
+    }
+    public static int modularExponentiation(int x, int n, int m) {
+        // Write your code here. 
+        return (int)find((long)x,(long)n,(long)m);
+    }
+}
