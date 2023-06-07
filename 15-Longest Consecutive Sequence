@@ -1,0 +1,22 @@
+public class Solution {
+    public static int lengthOfLongestConsecutiveSequence(int[] arr, int N) {
+        // Write your code here.
+        HashSet<Integer> set = new HashSet<>();
+        for(int i:arr){
+            set.add(i);
+        }int consecutive=0;
+        for(int i:arr){
+            if(!set.contains(i-1)){
+                int curnum = i;
+                int length = 1;
+
+                while(set.contains(curnum+1)){
+                    curnum++;
+                    length++;
+                }
+                consecutive = Math.max(length, consecutive);
+            }
+        }
+        return consecutive;
+    }
+}
