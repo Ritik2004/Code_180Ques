@@ -1,0 +1,38 @@
+public static ArrayList<Integer> majorityElementII(ArrayList<Integer> arr) 
+    {
+        // Write your code here.
+        int ele1 = -1;
+        int ele2 = -1;
+        int c1 = 0;
+        int c2 = 0;
+        int n = arr.size();
+        for(int i=0;i<n;i++){
+            if(c1==0 && ele2!=arr.get(i)){
+                c1=1;
+                ele1 = arr.get(i);
+            }
+            else if(c2==0 && ele1!=arr.get(i)){
+                c2=1;
+                ele2 = arr.get(i);
+            }
+            else if(arr.get(i) == ele1){
+                c1++;
+            }
+            else if(arr.get(i) == ele2){
+                c2++;
+            }
+            else{
+                c1--;
+                c2--;
+            }
+        }
+                int cnt1 = 0;
+        int cnt2 = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            if( ele1 == arr.get(i)) cnt1++;
+…            
+        
+        return ans;
+    }
+}
