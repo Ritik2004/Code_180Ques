@@ -1,0 +1,28 @@
+public class Solution 
+{
+	public static int uniqueSubstrings(String input) 
+    {
+		//write your code hereint left = 0;
+		int l=0;
+		int r=0;
+		Set<Character> set = new HashSet<>();
+int n = input.length();
+		int max = 0;
+		while(r<n){
+			char c = input.charAt(r);
+			if(set.add(c)){
+				max = Math.max(max, r-l+1);
+				r++;
+			}
+			else{
+				while(input.charAt(l)!=c){
+	set.remove(input.charAt(l));
+					l++;
+				}
+				set.remove(c);
+				l++;
+			}
+		}
+		return max;
+	}
+}
