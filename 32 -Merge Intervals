@@ -1,0 +1,28 @@
+public class Solution {
+    public static List<Interval> mergeIntervals(Interval[] intervals) {
+        // write your code here.
+        List<Interval> ans = new ArrayList<>();
+          if(intervals.length == 0 || intervals == null) {
+                          return ans;
+                                  }
+       Arrays.sort(intervals,(a,b)->a.start-b.start);
+          int start = intervals[0].start;
+          int end = intervals[0].finish;
+         
+         for(Interval interval:intervals){
+
+               int nextsrt = interval.start;
+               int nextend = interval.finish;
+                    if(end>=nextsrt){
+                    end = Math.max(end,nextend);
+                }     
+                else{
+                    ans.add (new Interval(start,end));
+                    start = interval.start;
+                    end = interval.finish;
+                }
+         }
+         ans.add(new Interval(start, end));
+        return ans;
+    }
+}
