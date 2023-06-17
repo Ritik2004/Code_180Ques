@@ -1,0 +1,22 @@
+
+public class Solution {
+    public static List < Integer > getInOrderTraversal(TreeNode root) {
+    	// Write your code here
+        List<Integer> ans = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        if(root == null){
+            return ans;
+        }
+        TreeNode cur = root;
+       while(cur!=null || !s.isEmpty()){
+            while(cur!=null){
+                s.add(cur);
+                cur=cur.left;
+            }
+           cur = s.pop();
+           ans.add(cur.data);
+           cur = cur.right;
+        } 
+        return ans;
+    }
+}
