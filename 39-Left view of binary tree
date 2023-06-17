@@ -1,0 +1,17 @@
+ public static ArrayList<Integer> getLeftView(TreeNode<Integer> root) 
+    {
+        //    Write your code here.
+ ArrayList<Integer> ans = new ArrayList<>();
+        leftview(root,ans,0);
+          return ans;
+    }
+    public static void leftview(TreeNode<Integer> root, ArrayList<Integer> ans, int level){
+        if(root == null){
+            return;
+        }
+        if(ans.size()==level){
+            ans.add(root.data);
+        }
+               leftview(root.left,ans,level+1);
+        leftview(root.right,ans,level+1);
+    }
