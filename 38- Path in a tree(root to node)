@@ -1,0 +1,24 @@
+public class Solution {
+    public static ArrayList<Integer> pathInATree(TreeNode root, int x) {
+ ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(root == null){
+            return ans;
+        }
+         path(root,x,ans);
+         return ans;
+    }
+    public static boolean path(TreeNode root, int x, ArrayList<Integer> ans){
+        if(root == null){
+            return false;
+        }
+        ans.add(root.data);
+        if(root.data == x){
+            return true;
+        }
+        if(path(root.left,x,ans) || path(root.right,x,ans)){
+            return true;
+        }
+        ans.remove(ans.size()-1);
+        return false;
+    }
+}
