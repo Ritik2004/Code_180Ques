@@ -1,0 +1,43 @@
+class Pair{
+	BinaryTreeNode node;
+	int dis;
+	Pair(BinaryTreeNode node,int dis){
+		this.node=node;
+		this.dis = dis;
+	}
+}
+public class Solution {
+	public static ArrayList<Integer> getTopView(BinaryTreeNode root) {
+		// Write your code here.
+		ArrayList<Integer> ans = new ArrayList<Integer>();
+		if(root==null){
+			return ans;
+		}
+		Queue<Pair> q = new LinkedList<>();
+		Map<Integer,Integer> map =new TreeMap<>();
+		q.add(new Pair(root,0));
+    while(!q.isEmpty()){
+			Pair it = q.remove();
+			BinaryTreeNode n1 = it.node;
+int hd = it.dis;
+             
+			if(!map.containsKey(hd)){
+			map.put(hd,n1.val);
+			}
+			
+			if(n1.left!=null){
+				q.add(new Pair(n1.left,hd-1));
+			}
+			if(n1.right!=null){
+				q.add(new Pair(n1.right,hd+1));
+			}
+             
+		}
+    for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+			            ans.add(entry.getValue());
+		 }
+		
+		return ans;
+	}
+}
+             
