@@ -1,0 +1,24 @@
+public static ArrayList<Integer> getLevelOrder(BinaryTreeNode root) {
+    //Your code goes here
+	  ArrayList<Integer>temp = new ArrayList<>();
+	  if(root == null)
+	      {
+		    return temp;
+				      }
+  Queue<BinaryTreeNode> q = new LinkedList<>();
+			          q.add(root);
+				while(!q.isEmpty()){
+			  int s = q.size();
+					
+		 for(int i=0;i<s;i++){
+			 BinaryTreeNode t1 = q.poll();
+        if(t1.left!=null){
+				q.add(t1.left);
+			 }
+		if(t1.right!=null){
+			q.add(t1.right);
+		 }
+			temp.add(t1.val);
+						 }
+				 }
+		     return temp;
