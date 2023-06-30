@@ -1,0 +1,44 @@
+
+
+						public class Solution {
+											public static int Successor(BinaryTreeNode<Integer> root,int key){
+																				int temp =-1;
+										while(root!=null){		
+																					if(root.data<=key){
+												
+																																																																																								 root=root.right;
+																																																																																								 								}
+																																																																																																 											else
+																																																																																																											 											{
+																																																																																																																						 												temp = root.data;
+																																																																																																																																		 												root = root.left;
+																																																																																																																																														 												
+																																																																																																																																																										 											}
+																																																																																																																																																																					 													}
+																																																																																																																																																																																		 												return temp;
+																																																																																																																																																																																														 										}
+																																																																																																																																																																																																								 		
+																																																																																																																																																																																																										 	public static ArrayList<Integer> predecessorSuccessor(BinaryTreeNode<Integer>root, int key) {
+																																																																																																																																																																																																											 		// Write your code here.
+																																																																																																																																																																																																													 		
+																																																																																																																																																																																																															 		ArrayList<Integer> temp = new ArrayList<>();
+																																																																																																																																																																																																																	 		temp.add(predecessor(root,key));
+																																																																																																																																																																																																																			 		temp.add(Successor(root,key));
+																																																																																																																																																																																																																					 		return temp;
+																																																																																																																																																																																																																							 	}		
+																																																																																																																																																																																																																								 	public static int predecessor(BinaryTreeNode<Integer> root,int key){
+																																																																																																																																																																																																																									 		int temp = -1;
+																																																																																																																																																																																																																											 	    
+																																																																																																																																																																																																																													 		while(root!=null){
+																																																																																																																																																																																																																															 		if(root.data<key){
+																																																																																																																																																																																																																																	 			temp = root.data;
+																																																																																																																																																																																																																																				 			root = root.right;
+																																																																																																																																																																																																																																							 		}
+																																																																																																																																																																																																																																									 		else {
+																																																																																																																																																																																																																																											 			root=root.left;
+																																																																																																																																																																																																																																														 		}
+																																																																																																																																																																																																																																																 		}
+																																																																																																																																																																																																																																																		 		return temp;
+																																																																																																																																																																																																																																																				 	}
+																																																																																																																																																																																																																																																					        
+																																																																																																																																																																																																																																																							}
