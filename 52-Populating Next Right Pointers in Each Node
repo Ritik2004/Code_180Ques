@@ -1,0 +1,20 @@
+public static void connectNodes(BinaryTreeNode<Integer> root) {
+    
+		Queue<BinaryTreeNode<Integer>> q = new LinkedList<>();
+		q.add(root);
+		while(!q.isEmpty()){
+			int s = q.size();
+			BinaryTreeNode<Integer> temp = null;
+					while(s-->0){
+ BinaryTreeNode<Integer> head = q.peek();
+				 q.poll();
+				 head.next = temp;
+				 temp = head;
+               if(temp.right!=null){
+				   q.add(temp.right);
+			   }
+			   if(temp.left!=null){
+				   q.add(temp.left);
+			   }
+      }
+			
