@@ -1,0 +1,13 @@
+    public static boolean validateBST(BinaryTreeNode<Integer> root) 
+    {
+    return validate(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    public static boolean validate(BinaryTreeNode<Integer> root, int min, int max){
+        if(root == null){
+            return true;
+        }
+        if(root.data>max || root.data<min) return false;
+
+        return (validate(root.left,min,root.data) && validate(root.right,root.data,max));
+    }
+    }
