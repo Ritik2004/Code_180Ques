@@ -1,0 +1,29 @@
+import java.util.* ;
+public class Solution {
+
+   public static int isBalance(BinaryTreeNode<Integer> root){
+       if(root == null){
+           return 0;
+       }
+       int lh = isBalance(root.left);
+       if(lh==-1){
+           return -1;
+       }
+       int rh = isBalance(root.right);
+       if(rh==-1){
+           return -1;
+       }
+       if(Math.abs(lh-rh)>1){
+           return -1;
+       }
+       return 1+Math.max(lh,rh);
+   }
+	public static boolean isBalancedBT(BinaryTreeNode<Integer> root) {
+		// Write your code here.
+        int temp = isBalance(root);
+           if(temp==-1){
+               return false;
+           }
+           return true;
+	}
+}
