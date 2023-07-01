@@ -1,0 +1,25 @@
+import java.util.* ;
+public class Solution 
+{
+    public static int lowestCommonAncestor(TreeNode<Integer> root, int x, int y) 
+    {
+        //    Write your code here.
+        if(root == null){
+          return -1;
+                }
+        
+        if(root.data==x || root.data==y){
+            return root.data;
+        }
+       int lh= lowestCommonAncestor(root.left,x,y);
+       int rh = lowestCommonAncestor(root.right,x,y);
+        if(lh == -1){
+            return rh;
+        }
+        if(rh == -1){
+            return lh;
+        }
+        else 
+        return root.data;
+    }
+}
