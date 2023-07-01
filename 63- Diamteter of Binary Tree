@@ -1,0 +1,18 @@
+public class Solution {
+	
+	public static int path(TreeNode<Integer> root, int ans[]){
+              if(root == null){
+				  return 0;
+			  }
+			  int lh = path(root.left,ans);
+			  int rh = path(root.right,ans);
+            ans[0] = Math.max(ans[0],lh+rh+1);
+			  return 1+Math.max(lh,rh);
+	}
+	public static int diameterOfBinaryTree(TreeNode<Integer> root) {
+		// Write your code here.
+		int ans[] =new int[1];
+		path(root,ans);
+		return ans[0]-1;
+	}
+}
