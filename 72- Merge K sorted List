@@ -1,0 +1,38 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+	public static class Pair{
+		int li;
+		int di;
+		int val;
+		Pair(int li,int di,int val){
+            this.li = li;
+			this.di = di;
+			this.val = val;
+		}
+	}
+	public static ArrayList<Integer> mergeKSortedArrays(ArrayList<ArrayList<Integer>> kArrays, int k)
+	{
+		// Write your code here.
+		PriorityQueue<Pair> pq = new PriorityQueue<>((Pair a,Pair b)->(a.val-b.val));
+		ArrayList<Integer> ans = new ArrayList<>();
+		for(int i=0;i<kArrays.size();i++){
+             Pair p = new Pair(i,0,kArrays.get(i).get(0));
+			 pq.add(p);
+		}
+		while(pq.size()>0){
+			Pair p =pq.remove();
+			ans.add(p.val);
+			p.di++;
+
+			if(p.di<kArrays.get(p.li).size()){
+				p.val = kArrays.get(p.li).get(p.di);
+				pq.add(p);
+			}
+		}
+     return ans;
+	}
+}
