@@ -1,0 +1,44 @@
+import java.util.*;
+public class Solution {
+    public static boolean dfs(int s,int parent,boolean[] visit,ArrayList<ArrayList<Integer>> ans){
+        visit[s] = true;
+        for(Integer it:ans.get(s)){
+            if(!visit[it]){
+                if(dfs(it,s,visit,ans) == true) 
+                 return true;
+            }
+            else if(it!=parent){
+                return true;
+            }
+        }
+           return false;
+    }
+    
+    public static String cycleDetection(int[][] edges, int n, int m) {
+        // Write your code here.
+        boolean visit[] = new boolean[n+1];
+         ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+         
+                 for(int i=0;i<=n;i++){
+                    ans.add(new ArrayList<>());
+                       }
+                       
+    for(int i=0;i<m;i++){
+    ans.get(edges[i][1]).add(edges[i][0]);
+    ans.get(edges[i][0]).add(edges[i][1]);
+        }
+         
+        for(int i=0;i<=n;i++){
+        visit[i] = false;
+                }   
+        
+        for(int i=0;i<n;i++){
+            if(!visit[i]){
+                if(dfs(i,-1, visit,ans)==true)
+                    return "Yes";
+            }
+        }
+        return "No";
+    }
+    
+}
