@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class Solution {
+
+    public static boolean bfs(int color[] ,int src, ArrayList<ArrayList<Integer>> ans){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(src);
+        color[src] = 0;
+        while(!q.isEmpty()){
+            int node = q.remove();
+            for(int it:ans.get(node)){
+                if(color[it]==-1){
+                   color[it] = 1-color[node];
+                   q.add(it);
+                }
+                else if(color[it] == color[node]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isGraphBirpatite(ArrayList<ArrayList<Integer>> edges) {
+
+        // Write your code here
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        int n = edges.size();
+        for(int i=0;i<n;i++){
+            ans.add(new ArrayList<>());
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(edges.get(i).get(j)==1 && i!=j){
+                    ans.get(i).add(j);
+                    ans.get(j).add(i);
+                }
+            }
+        }
+            int color[] = new int[n];
+            for(int i=0;i<n;i++) color[i]=-1;
+            for(int i=0;i<n;i++){
+                if(color[i] == -1){
+                if(bfs(color, i,ans) == false){
+                    return false;
+                }
+              }
+            }
+           return true;
+    }
+}
