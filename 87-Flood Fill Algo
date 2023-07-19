@@ -1,0 +1,29 @@
+public class Solution
+{
+    public static void dfs(int image[][], int x,int y,int newColor, int n,int m,int visit[][],int src){
+        
+        if(x<0||y<0||x>=n||y>=m||visit[x][y] == newColor|| image[x][y]!=src){
+            return;
+        }
+
+        visit[x][y] = newColor;
+         dfs(image,x+1,y,newColor,n,m,visit,src);
+         dfs(image,x,y+1,newColor,n,m,visit,src);
+         dfs(image,x-1,y,newColor,n,m,visit,src);
+         dfs(image,x,y-1,newColor,n,m,visit,src);
+
+    }
+    public static int[][] floodFill(int[][] image, int x, int y, int newColor)
+    {
+        // Write your code here
+        int n = image.length;
+        int m = image[0].length;
+         int src = image[x][y];
+
+        int visit[][] = image;
+       
+       dfs(image,x,y,newColor,n,m,visit,src);
+       return visit;
+    }
+}
+
