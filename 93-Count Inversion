@@ -1,0 +1,42 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long getInversions(long arr[], int n) {
+        // Write your code here.
+        return inversion(0,arr.length-1,arr,n);
+    }
+    public static long merge(int l,int r,long arr[],int m){
+        int i=0;int j=0;
+        int k=l;
+        long ans=0;
+        long left[] = Arrays.copyOfRange(arr,l,m+1);
+        long right[] = Arrays.copyOfRange(arr,m+1,r+1);
+
+        while(i<left.length && j<right.length){
+            if(left[i]<=right[j]){
+                arr[k++] = left[i++];
+            }
+            else{
+                arr[k++] = right[j++];
+                ans+=m+1-l-i;
+            }
+        }
+        while(i<left.length){
+            arr[k++] = left[i++];
+        }
+        while(j<right.length){
+            arr[k++] = right[j++];
+        }
+        return ans;
+    }
+    public static long inversion(int l, int r, long arr[], int n){
+        long count = 0;
+         if(l<r){
+             int mid = (l+r)/2;
+             count+=inversion(l,mid,arr,n);
+             count+=inversion(mid+1,r,arr,n);
+             count+=merge(l,r,arr,mid);
+         }
+          return count;
+    }
+}
