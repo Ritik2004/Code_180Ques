@@ -1,0 +1,53 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int merger(ArrayList<Integer> arr,int l, int r,int m){
+        int ans =0;
+        int j=m+1;
+        for(int i=l;i<=m;i++){
+            while(j<=r && arr.get(i)>2*(long)arr.get(j)){
+                 j++;
+            }
+            ans+=j-(m+1);
+        }
+        ArrayList<Integer> temp = new ArrayList<>();
+        int left = l;
+        int right = m+1;
+        while(left<=m && right<=r){
+          if(arr.get(left)<=arr.get(right)){
+              temp.add(arr.get(left++));
+          }
+          else{
+              temp.add(arr.get(right++));
+          }
+        }
+        while(left<=m){
+            temp.add(arr.get(left++));
+        }
+        while(right<=r){
+             temp.add(arr.get(right++));
+        }
+              for(int i = l; i<=r;i++) {
+                              arr.set(i, temp.get(i - l)); 
+                    }
+        return ans;
+    }
+    public static int reverse(ArrayList<Integer>arr,int l,int r){
+        int ans = 0;
+       if(l<r){ 
+            int mid = (l+r)/2;
+                ans+=reverse(arr,l,mid);
+                ans+=reverse(arr,mid+1,r);
+                ans+=merger(arr,l,r,mid);
+       }
+        return ans;
+    }
+    public static int reversePairs(ArrayList<Integer> arr) 
+    {
+        // Write your code here.
+        return reverse(arr,0,arr.size()-1);
+    }
+}
