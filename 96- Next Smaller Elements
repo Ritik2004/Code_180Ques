@@ -1,0 +1,20 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution{
+    static ArrayList<Integer> nextSmallerElement(ArrayList<Integer> arr, int n){
+        // Write your code here.
+        Stack<Integer> s = new Stack<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+           s.push(-1);
+        for(int i=n-1;i>=0;i--){
+            while(s.peek()>=arr.get(i)){
+                s.pop();
+            }
+            ans.add(s.peek());
+            s.push(arr.get(i));
+        }
+        Collections.reverse(ans);
+        return ans;
+    }
+}
