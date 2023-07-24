@@ -1,0 +1,21 @@
+import java.util.* ;
+import java.io.*; 
+ 
+
+public class Solution {
+     
+	public static TreeNode<Integer> preOrderTree(int[] preOrder) {
+ 		// Write your code here
+		 return bst(preOrder,Integer.MAX_VALUE,new int[]{0});
+	}
+	public static TreeNode<Integer> bst(int preOrder[], int bound, int i[]){
+		if(i[0]==preOrder.length || preOrder[i[0]]>bound) return null;
+
+		TreeNode<Integer> temp = new TreeNode<>(preOrder[i[0]++]);
+		temp.left = bst(preOrder,temp.data,i);
+		temp.right = bst(preOrder,bound,i);
+		return temp;
+	}
+
+}
+
