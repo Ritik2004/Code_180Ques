@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int path(int dp[][], int grid[][], int n, int m){
+        if(m==0 && n==0){
+            return grid[0][0];
+        }
+        if(n<0 || m<0){
+            return (int)Math.pow(10,9);
+        }
+          if(dp[n][m]!=-1){
+              return dp[n][m];
+          }
+          int left = grid[n][m] + path(dp,grid,n-1,m);
+          int top = grid[n][m] + path(dp,grid,n,m-1);
+
+          return dp[n][m] = Math.min(top,left);
+    }
+    public static int minSumPath(int[][] grid) {
+    	// Write your code here.
+        int n = grid.length;
+        int m = grid[0].length;
+        int dp[][] = new int[n][m];
+        
+            for(int arr[]:dp){
+                Arrays.fill(arr ,-1);
+            }
+        
+        return path(dp,grid,n-1,m-1);
+    }
+}
